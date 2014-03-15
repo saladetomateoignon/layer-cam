@@ -1,3 +1,6 @@
+#Mostly taken from here: http://www.stuffaboutcode.com/2013/09/raspberry-pi-gps-setup-and-python.html
+# Author is Martin O'Hanlon
+
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
