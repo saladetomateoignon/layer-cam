@@ -76,6 +76,7 @@ if __name__ == '__main__':
         print photo_url
         photo_id = 1
         pic_in_computer = '/home/pi/Desktop/picture'+str(photo_id)+'.jpg'
+        urllib.urlretrieve(photo_url, pic_in_computer)
         photo_id +=1
         os.system("DISPLAY=:0.0 XAUTHORITY=/home/pi/.Xauthority feh --hide-pointer -x -q -D 5 -B black -g 320x240 /home/pi/Desktop/picture1.jpg")
         print 'Success'
