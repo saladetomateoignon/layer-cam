@@ -15,7 +15,7 @@ import random
 import json
 from pprint import pprint
 
-gpsd = None #seting the global variable
+gpsd = None #setting the global variable
  
 os.system('clear') #clear the terminal (optional)
  
