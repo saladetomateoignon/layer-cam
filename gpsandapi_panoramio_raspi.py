@@ -1,13 +1,13 @@
 #! /usr/bin/python
-# GPS data retrieval written by Dan Mandle http://dan.mandle.me September 2012
+# Written by Dan Mandle http://dan.mandle.me September 2012
 # License: GPL 2.0
-
  
 import os
 from gps import *
 from time import *
 import time
 import threading
+import sys
 
 import urllib2
 import urllib
@@ -15,7 +15,7 @@ import random
 import json
 from pprint import pprint
 
-gpsd = None #setting the global variable
+gpsd = None #seting the global variable
  
 os.system('clear') #clear the terminal (optional)
  
@@ -74,14 +74,14 @@ if __name__ == '__main__':
         photo_data = photos_data[random.randint(0,numberofphotos-1)]
         photo_url = photo_data["photo_file_url"]
         print photo_url
-        photo_id = 1
-        pic_in_computer = '/home/pi/Desktop/picture'+str(photo_id)+'.jpg'
+        photo_id = photo_data["photo_id"]
+        pic_in_computer = '/home/pi/Desktop/fant-o-matic/pictures/picture-'+str(photo_id)+'.jpg'
         urllib.urlretrieve(photo_url, pic_in_computer)
-        photo_id +=1
-        os.system("DISPLAY=:0.0 XAUTHORITY=/home/pi/.Xauthority feh --hide-pointer -x -q -D 5 -B black -g 320x240 /home/pi/Desktop/picture1.jpg")
-        print 'Success'
-        break
-        time.sleep(5)
+        display_picture_instruction = "DISPLAY=:0.0 XAUTHORITY=/home/pi/.Xauthority feh --hide-pointer --cycle-once -x -q -D 5 -B black -g 320x240"+" /home/pi/Desktop/fant-o-matic/pictures/picture-"+str(photo_id)+".jpg"
+        #print display_picture_instruction
+        os.system(display_picture_instruction)
+        os.system("sudo python /home/pi/Desktop/fant-o-matic/button.py")
+        #sys.exit
  
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
     print "\nKilling Thread..."
